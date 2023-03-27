@@ -8,7 +8,9 @@ select clientes.nombre, ventas.clientes_id, ventas.total, ventas.fecha
 from clientes
 inner join ventas on (clientes.id = ventas.clientes_id)
 where ventas.fecha between '2023-03-23' and '2023-03-25'
-select clientes.nombre, ventas.clientes_id, ventas.total, ventas.fecha
+select *
 from clientes
-inner join ventas on (clientes.id = ventas.clientes_id)
-where ventas.fecha between '2023-03-23' and '2023-03-25'
+where clientes.id not in
+(select ventas.clientes_id
+from ventas
+where ventas.fecha between '2023-03-22' and '2023-03-25')
